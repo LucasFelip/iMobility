@@ -1,0 +1,20 @@
+# Arquivos gerados pelo Xcode
+.DS_Store
+xcuserdata
+
+# Dependências geradas pelo CocoaPods
+Pods/
+Podfile.lock
+
+# Arquivos gerados pelo Carthage
+Carthage/
+
+# Arquivos gerados pelo Swift Package Manager
+Packages/
+Package.resolved
+
+# Arquivos gerados pelo IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
