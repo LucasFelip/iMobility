@@ -13,7 +13,7 @@ struct Mapa: View {
         ZStack {
             Map(coordinateRegion: $locationManager.region,
                 showsUserLocation: true,
-                annotationItems: occurrenceManager.occurrences) { occurrence in
+                annotationItems: visibleOccurrences()) { occurrence in
                 MapAnnotation(coordinate: occurrence.coordinate) {
                     MapPinMaker()
                         .onTapGesture(count: 1, perform: {
@@ -31,13 +31,31 @@ struct Mapa: View {
             occurrenceManager.loadTotalOccurrence()
         }
     }
+    
+    private func visibleOccurrences() -> [Occurrence] {
+        let zoomOutThreshold: CLLocationDegrees = 0.03
+        let zoomLevel = locationManager.region.span.latitudeDelta
+
+        if zoomLevel > zoomOutThreshold {
+            return []
+        } else {
+            return occurrenceManager.occurrences
+        }
+    }
 }
 
 struct MapView: View {
+    @EnvironmentObject private var occurrenceManager: OccurrenceManager
+    
     var body: some View {
         VStack {
             Mapa()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                occurrenceManager.loadTotalOccurrence()
+            }
+        }
     }
 }

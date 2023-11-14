@@ -1,13 +1,15 @@
 import Foundation
 import Combine
 import MapKit
+import FirebaseFirestore
 
 class OccurrenceManager: NSObject, ObservableObject {
     @Published var occurrences: [Occurrence] = []
+    private var lastDocumentSnapshot: DocumentSnapshot?
+    private var isPaginating = false
     
     override init() {
         super.init()
-        self.occurrences = loadOccurrencesDataFromMemory()
     }
     
     func registerOccurrenceUser(currentUser: User, mapLocation: MapLocation, type: TypeOccurrence, image: Data){
@@ -38,40 +40,35 @@ class OccurrenceManager: NSObject, ObservableObject {
     func loadTotalOccurrence() {
         loadTotalOccurrencesDatabase()
     }
+    
+    func loadMoreOccurrences() {
+        loadTotalOccurrencesDatabasePaginated()
+    }
+    
+    func clearAndReloadOccurrences() {
+        self.occurrences = []
+        self.lastDocumentSnapshot = nil
+        loadTotalOccurrencesDatabase()
+    }
 
     private func loadTotalOccurrencesDatabase() {
-        removeOccurrenceFromMemory()
         PersistenceOccurrenceManager.shared.loadOccurrences { [self] occurrence in
             DispatchQueue.main.async { [self] in
                 self.occurrences = occurrence
-                
-                if !occurrence.isEmpty {
-                    saveOccurrenceFromMemory(occurrence)
-                }
             }
         }
     }
     
-    private func saveOccurrenceFromMemory(_ occurrences: [Occurrence]) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(occurrences) {
-            UserDefaults.standard.set(encoded, forKey: "occurrenceData")
-        }
-    }
-    
-    private func removeOccurrenceFromMemory() {
-        if UserDefaults.standard.data(forKey: "occurrenceData") != nil {
-            UserDefaults.standard.removeObject(forKey: "occurrenceData")
-        }
-    }
-    
-    func loadOccurrencesDataFromMemory() -> [Occurrence] {
-        if let occurrenceData = UserDefaults.standard.data(forKey: "occurrenceData") {
-            let decoder = JSONDecoder()
-            if let occurrences = try? decoder.decode([Occurrence].self, from: occurrenceData) {
-                return occurrences
+    private func loadTotalOccurrencesDatabasePaginated() {
+        guard !isPaginating else { return }
+        isPaginating = true
+
+        PersistenceOccurrenceManager.shared.loadOccurrencesPaginated(startAfterDocument: lastDocumentSnapshot) { [weak self] (newOccurrences, lastDocument) in
+            DispatchQueue.main.async {
+                self?.occurrences.append(contentsOf: newOccurrences)
+                self?.lastDocumentSnapshot = lastDocument
+                self?.isPaginating = false
             }
         }
-        return []
     }
 }

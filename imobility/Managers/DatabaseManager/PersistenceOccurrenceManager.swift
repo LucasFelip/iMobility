@@ -10,6 +10,68 @@ class PersistenceOccurrenceManager {
     
     private init() {}
     
+    func loadOccurrencesPaginated(startAfterDocument: DocumentSnapshot? = nil, limit: Int = 10, completion: @escaping ([Occurrence], DocumentSnapshot?) -> Void) {
+        var query: Query = db.collection("occurrences").order(by: "dateRegister").limit(to: limit)
+
+        if let lastDocument = startAfterDocument {
+            query = query.start(afterDocument: lastDocument)
+        }
+
+        query.getDocuments { (querySnapshot, error) in
+            var occurrences: [Occurrence] = []
+            var lastDocument: DocumentSnapshot?
+
+            if let error = error {
+                print("Error getting occurrences: \(error)")
+                completion([], nil)
+            } else {
+                guard let documents = querySnapshot?.documents else {
+                    completion([], nil)
+                    return
+                }
+
+                for document in documents {
+                    let data = document.data()
+                    
+                    let id = Int(data["id"] as? Int ?? 0)
+                    let userId = data["userId"] as? Int ?? 0
+                    let latitude = data["latitude"] as? Double ?? 0.0
+                    let longitude = data["longitude"] as? Double ?? 0.0
+                    let imageURLString = data["imageURL"] as? String ?? ""
+                    let imageURL = URL(string: imageURLString)
+                    let positiveRate = data["positiveRate"] as? Double ?? 0.0
+                    let negativeRate = data["negativeRate"] as? Double ?? 0.0
+                    let typeRawValue = data["type"] as? String ?? ""
+                    let type = TypeOccurrence(rawValue: typeRawValue) ?? .buracoVia
+                    let dateRegister = data["dateRegister"] as? Date ?? Date()
+                    let city = data["city"] as? String ?? ""
+                    let state = data["state"] as? String ?? ""
+                    let country = data["country"] as? String ?? ""
+                    let neighborhood = data["neighborhood"] as? String ?? ""
+
+                    let user = User(id: userId, name: "", email: "", password: "", imagePerfil: Data(), points: 0.0)
+                    
+                    if let imageURL = imageURL {
+                        URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+                            if let imageData = data {
+                                let occurrence = Occurrence(id: id, user: user, latitude: latitude, longitude: longitude, image: imageData, positiveRate: positiveRate, negativeRate: negativeRate, type: type, dateRegister: dateRegister, city: city, state: state, country: country, neighborhood: neighborhood)
+                                occurrences.append(occurrence)
+                            }
+                            completion(occurrences, lastDocument)
+                        }.resume()
+                    } else {
+                        let occurrence = Occurrence(id: id, user: user, latitude: latitude, longitude: longitude, image: Data(), positiveRate: positiveRate, negativeRate: negativeRate, type: type, dateRegister: dateRegister, city: city, state: state, country: country, neighborhood: neighborhood)
+                        occurrences.append(occurrence)
+                        completion(occurrences, lastDocument)
+                    }
+                }
+
+                lastDocument = documents.last
+                completion(occurrences, lastDocument)
+            }
+        }
+    }
+    
     func saveOccurrence(occurrence: Occurrence) {
         let storage = Storage.storage()
         let storageRef = storage.reference()
