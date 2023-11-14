@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 
 struct LocationSelectionView: View {
-    @ObservedObject private var locationManager = LocationManager()
+    @EnvironmentObject private var locationManager: LocationManager
     
     @State private var isConfirmButtonVisible = false
     @State var longPressLocation = CGPoint.zero
