@@ -532,6 +532,7 @@
 				INFOPLIST_FILE = imobility/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iMobility;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Este aplicativo precisa acessar a câmera para capturar imagens das ocorrnecias relatadas.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "A localização apenas durante a execução deste aplicativo. Ela é usada para mostrar as ocorrências e quais destas estão proximas do usuário.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -569,6 +570,7 @@
 				INFOPLIST_FILE = imobility/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iMobility;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Este aplicativo precisa acessar a câmera para capturar imagens das ocorrnecias relatadas.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "A localização apenas durante a execução deste aplicativo. Ela é usada para mostrar as ocorrências e quais destas estão proximas do usuário.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

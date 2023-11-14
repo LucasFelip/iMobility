@@ -21,6 +21,9 @@ struct OccurrenceView: View {
     @State private var isCategorySelection: TypeOccurrence = .buracoVia
     @State private var isImageSelection: Data?
     
+    @State private var imageSourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var showImagePicker: Bool = false
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -31,15 +34,12 @@ struct OccurrenceView: View {
                     
                 if isShowingButton {
                     ButtonRetangular(buttonText: "Localização", action: {
-                        insertLocal = true
                         isConfirmLocation = true
                     }, isCheckmarkVisible: $insertLocal)
                     ButtonRetangular(buttonText: "Categoria", action: {
-                        insertType = true
                         isConfirmCategory = true
                     }, isCheckmarkVisible: $insertType)
                     ButtonRetangular(buttonText: "Foto", action: {
-                        insertPicture = true
                         isConfirmPhoto = true
                     }, isCheckmarkVisible: $insertPicture)
                 }
@@ -68,8 +68,25 @@ struct OccurrenceView: View {
             .sheet(isPresented: $isConfirmCategory) {
                 CategorySelectionView(selectedCategory: $isCategorySelection, isConfirmSelection: $isConfirmCategory)
             }
-            .sheet(isPresented: $isConfirmPhoto) {
-                ImageSelectionView(imageData: $isImageSelection, isConfirmPhoto: $isConfirmPhoto)
+            .actionSheet(isPresented: $isConfirmPhoto) {
+                ActionSheet(title: Text("Escolha a Fonte da Imagem"),
+                            message: Text("Selecione de onde deseja obter a imagem."),
+                            buttons: [
+                                .cancel(Text("Cancelar"), action: {
+                                    isConfirmPhoto = false
+                                    insertPicture = false
+                                }),
+                                .default(Text("Usar Câmera"), action: {
+                                    imageSourceType = .camera
+                                    showImagePicker = true
+                                }),
+                                .default(Text("Selecionar da Galeria"), action: {
+                                    showImagePicker = true
+                                })
+                            ])
+            }
+            .sheet(isPresented: $showImagePicker) {
+                ImageSelectionView(sourceType: $imageSourceType, imageData: $isImageSelection, isConfirmPhoto: $isConfirmPhoto)
             }
             .navigationDestination(isPresented: $isShowingInitView, destination: {
                 InitView()

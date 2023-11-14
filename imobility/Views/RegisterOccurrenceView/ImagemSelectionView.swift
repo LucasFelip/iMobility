@@ -1,26 +1,36 @@
 import SwiftUI
 
 struct ImageSelectionView: View {
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    
+    @Binding var sourceType: UIImagePickerController.SourceType
     @Binding var imageData: Data?
     @Binding var isConfirmPhoto: Bool
     
     var body: some View {
         VStack {
-            if let imageData = imageData, let uiImage = UIImage(data: imageData) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else {
-                ImageManager(sourceType: $sourceType, selectedImage: $imageData)
-            }
+            content
         }
-        .onChange(of: imageData) { newValue in
-            if newValue != nil {
-                isConfirmPhoto = false
-            }
+        .onChange(of: imageData) { _ in
+            isConfirmPhoto = false
         }
+    }
+    
+    @ViewBuilder
+    private var content: some View {
+        if let imageData = imageData, let uiImage = UIImage(data: imageData) {
+            imageView(for: uiImage)
+        } else {
+            imagePickerManager
+        }
+    }
+    
+    private func imageView(for uiImage: UIImage) -> some View {
+        Image(uiImage: uiImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    private var imagePickerManager: some View {
+        ImageManager(sourceType: $sourceType, selectedImage: $imageData)
     }
 }

@@ -72,7 +72,6 @@ struct ButtonRetangular: View {
     let buttonText: String
     let action: () -> Void
     @Binding var isCheckmarkVisible: Bool
-    @State private var isBaseColor = true
 
     var body: some View {
         ZStack {
@@ -92,25 +91,11 @@ struct ButtonRetangular: View {
                 Spacer()
 
                 ZStack {
-                    if isBaseColor {
-                        Circle()
-                            .fill(Color.gray)
-                            .frame(width: 40, height: 40)
-                    } else {
-                        Circle()
-                            .fill(
-                                LinearGradient(
-                                    stops: [
-                                        Gradient.Stop(color: Color(red: 0.64, green: 0.28, blue: 0.88), location: isCheckmarkVisible ? 0.0 : 1.0),
-                                        Gradient.Stop(color: Color(red: 0.36, green: 0.47, blue: 0.96), location: isCheckmarkVisible ? 1.0 : 0.0),
-                                    ],
-                                    startPoint: UnitPoint(x: 0.5, y: 0),
-                                    endPoint: UnitPoint(x: 0.5, y: 1)
-                                )
-                            )
-                            .frame(width: 40, height: 40)
-                    }
-
+                    Circle()
+                        .fill(isCheckmarkVisible
+                            ? LinearGradient(gradient: Gradient(colors: [Color(red: 0.64, green: 0.28, blue: 0.88), Color(red: 0.36, green: 0.47, blue: 0.96)]), startPoint: .top, endPoint: .bottom)
+                            : LinearGradient(gradient: Gradient(colors: [Color.gray]), startPoint: .top, endPoint: .bottom))
+                        .frame(width: 40, height: 40)
                     if isCheckmarkVisible {
                         Image(systemName: "checkmark")
                             .font(.system(size: 20))
@@ -125,7 +110,7 @@ struct ButtonRetangular: View {
         .onTapGesture {
             action()
             withAnimation {
-                isBaseColor = false
+                isCheckmarkVisible.toggle()
             }
         }
     }
