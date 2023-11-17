@@ -64,7 +64,6 @@ struct UserActions: View {
             .padding(.top, 10)
 
             Button(action: {
-                userManager.disconnectUser()
                 isDisconnect = true
             }) {
                 HStack {
@@ -100,7 +99,7 @@ struct AccountUser: View {
         if let user = userManager.currentUser {
             VStack(alignment: .leading) {
                 HStack {
-                    Image(uiImage: UIImage(data: user.imagePerfilData) ?? UIImage())
+                    Image(uiImage: UIImage(data: user.imagePerfilData) ?? UIImage(imageLiteralResourceName: "icon_user"))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100, height: 100)
@@ -142,6 +141,9 @@ struct AccountUser: View {
             .navigationDestination(isPresented: $isDisconnect, destination: {
                 ContentView()
                     .navigationBarBackButtonHidden(true)
+                    .onAppear{
+                        userManager.disconnectUser()
+                    }
             })
             .padding(.horizontal, 15)
             .onAppear {

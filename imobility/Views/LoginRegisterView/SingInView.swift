@@ -73,7 +73,7 @@ struct SingInView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     
-    @ObservedObject private var userManager = UserManager()
+    @EnvironmentObject private var userManager: UserManager
     
     func initAcess() {
         userManager.acessUser(email: email, password: password)

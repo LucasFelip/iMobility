@@ -17,6 +17,13 @@ struct OccurrenceDetailView: View {
                 ButtonRetangularSimple(buttonText: "Voltar", action: { isShowingModal = false })
                 Vector(imageName: "Vector 2", startX: -UIScreen.main.bounds.width, startY: UIScreen.main.bounds.height)
             }
+//            .alert(isPresented: $hasInteracted) {
+//                Alert(
+//                    title: Text("Ação Registrada!"),
+//                    message: Text("Sua contribuição é essencial. Obrigado por nos ajudar a classificar a importância desta ocorrência. Seu feedback nos ajuda a melhorar continuamente nossos serviços e a responder de forma mais eficaz."),
+//                    dismissButton: .default(Text("Entendido"))
+//                )
+//            }
             .edgesIgnoringSafeArea(.all)
             .accentColor(.purple)
         }
@@ -29,7 +36,7 @@ struct OccurrenceDetailsView: View {
     var body: some View {
         VStack {
             Text("Detalhes da ocorrência").font(.title)
-            Image(uiImage: UIImage(data: occurrence.imageData) ?? UIImage())
+            Image(uiImage: UIImage(data: occurrence.imageData) ?? UIImage(imageLiteralResourceName: "erro_occurrence"))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 300)
@@ -47,25 +54,33 @@ struct InteractionButtons: View {
     var body: some View {
         HStack {
             RateButton(label: "Importante", imageName: "hand.thumbsup", rate: Int(occurrence.positiveRate)) {
-                guard userManager.currentUser != nil && !hasInteracted else { return }
-                hasInteracted = true
-                occurrence.positiveRateToggle()
-                updateOccurrence()
+                rateOccurrence(isPositive: true)
             }
+            .disabled(hasInteracted)
 
             RateButton(label: "Não Importante", imageName: "hand.thumbsdown", rate: Int(occurrence.negativeRate)) {
-                guard userManager.currentUser != nil && !hasInteracted else { return }
-                hasInteracted = true
-                occurrence.negativeRateToggle()
-                updateOccurrence()
+                rateOccurrence(isPositive: false)
             }
+            .disabled(hasInteracted)
         }
         .padding()
+    }
+
+    private func rateOccurrence(isPositive: Bool) {
+        guard userManager.currentUser != nil && !hasInteracted else { return }
+        hasInteracted = true
+        if isPositive {
+            occurrence.positiveRateToggle()
+        } else {
+            occurrence.negativeRateToggle()
+        }
+        updateOccurrence()
     }
 
     private func updateOccurrence() {
         DispatchQueue.global(qos: .background).async {
             occurrenceManager.updateOccurrence(updateOccurrence: occurrence)
+            occurrenceManager.loadMoreOccurrences()
         }
     }
 }

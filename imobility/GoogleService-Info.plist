@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBWRpbfTdnVAQX4Juet-PKSGdBc6Pua8WQ</string>
+	<string>AIzaSyD8T9LSTci_KC6zf7pf064NJ2gItSR-In8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>128010312344</string>
+	<string>1093316204648</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>imobility.swiftrun</string>
 	<key>PROJECT_ID</key>
-	<string>swiftrunimobility</string>
+	<string>imobility-97fc9</string>
 	<key>STORAGE_BUCKET</key>
-	<string>swiftrunimobility.appspot.com</string>
+	<string>imobility-97fc9.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:128010312344:ios:a86a319a42be67e69c0eed</string>
+	<string>1:1093316204648:ios:3326dbb2b9fff8fabb83dd</string>
 </dict>
 </plist>

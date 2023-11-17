@@ -13,7 +13,7 @@
 		1A9397B32AFD629D00D5B49D /* SingInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397B22AFD629D00D5B49D /* SingInView.swift */; };
 		1A9397B52AFD62FD00D5B49D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397B42AFD62FD00D5B49D /* RegisterView.swift */; };
 		1A9397B72AFD633000D5B49D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397B62AFD633000D5B49D /* LoginView.swift */; };
-		1A9397BE2AFD765000D5B49D /* ChartsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397BD2AFD765000D5B49D /* ChartsManager.swift */; };
+		1A9397BE2AFD765000D5B49D /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397BD2AFD765000D5B49D /* ChartManager.swift */; };
 		1A9397C02AFD768E00D5B49D /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397BF2AFD768E00D5B49D /* ReportView.swift */; };
 		1A9397C22AFD76CB00D5B49D /* LocationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397C12AFD76CB00D5B49D /* LocationSelectionView.swift */; };
 		1A9397C42AFD771100D5B49D /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397C32AFD771100D5B49D /* CategorySelectionView.swift */; };
@@ -24,6 +24,9 @@
 		1A9397CF2AFDAA2600D5B49D /* PersistenceOccurrenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9397CE2AFDAA2600D5B49D /* PersistenceOccurrenceManager.swift */; };
 		1A9397D12AFDB33C00D5B49D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9397D02AFDB33C00D5B49D /* FirebaseStorage */; };
 		1A9397D32AFDB33C00D5B49D /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9397D22AFDB33C00D5B49D /* FirebaseStorageCombine-Community */; };
+		1A9D47922B050B12009EA109 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D47912B050B12009EA109 /* GoogleService-Info.plist */; };
+		1AC36EE02B06AAE90002E5C7 /* ChartRegionDetailsRegionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC36EDF2B06AAE90002E5C7 /* ChartRegionDetailsRegionView.swift */; };
+		1AC36EE22B06D5500002E5C7 /* ChartGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC36EE12B06D5500002E5C7 /* ChartGeneralView.swift */; };
 		1AC68A4B2AFC09D50057D341 /* imobilityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC68A4A2AFC09D50057D341 /* imobilityApp.swift */; };
 		1AC68A4D2AFC09D50057D341 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC68A4C2AFC09D50057D341 /* ContentView.swift */; };
 		1AC68A4F2AFC09D70057D341 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC68A4E2AFC09D70057D341 /* Assets.xcassets */; };
@@ -51,7 +54,6 @@
 		1ACDE51F2AFC33CE000B2CEA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDE51E2AFC33CE000B2CEA /* MapView.swift */; };
 		1ACDE5212AFC33E9000B2CEA /* OccurrenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDE5202AFC33E9000B2CEA /* OccurrenceManager.swift */; };
 		1ACDE5232AFC341A000B2CEA /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDE5222AFC341A000B2CEA /* MapLocation.swift */; };
-		1ADE17642AFF0613003EE7D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE17632AFF0613003EE7D3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +63,7 @@
 		1A9397B22AFD629D00D5B49D /* SingInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInView.swift; sourceTree = "<group>"; };
 		1A9397B42AFD62FD00D5B49D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		1A9397B62AFD633000D5B49D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		1A9397BD2AFD765000D5B49D /* ChartsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsManager.swift; sourceTree = "<group>"; };
+		1A9397BD2AFD765000D5B49D /* ChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		1A9397BF2AFD768E00D5B49D /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		1A9397C12AFD76CB00D5B49D /* LocationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionView.swift; sourceTree = "<group>"; };
 		1A9397C32AFD771100D5B49D /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,9 @@
 		1A9397CA2AFD77DE00D5B49D /* AccountUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUserView.swift; sourceTree = "<group>"; };
 		1A9397CC2AFD93C400D5B49D /* InitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
 		1A9397CE2AFDAA2600D5B49D /* PersistenceOccurrenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceOccurrenceManager.swift; sourceTree = "<group>"; };
+		1A9D47912B050B12009EA109 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1AC36EDF2B06AAE90002E5C7 /* ChartRegionDetailsRegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRegionDetailsRegionView.swift; sourceTree = "<group>"; };
+		1AC36EE12B06D5500002E5C7 /* ChartGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGeneralView.swift; sourceTree = "<group>"; };
 		1AC68A472AFC09D50057D341 /* imobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imobility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC68A4A2AFC09D50057D341 /* imobilityApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imobilityApp.swift; sourceTree = "<group>"; };
 		1AC68A4C2AFC09D50057D341 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +94,6 @@
 		1ACDE51E2AFC33CE000B2CEA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1ACDE5202AFC33E9000B2CEA /* OccurrenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccurrenceManager.swift; sourceTree = "<group>"; };
 		1ACDE5222AFC341A000B2CEA /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
-		1ADE17632AFF0613003EE7D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +169,7 @@
 				1ACDE51A2AFC32EB000B2CEA /* Views */,
 				1AC68A4A2AFC09D50057D341 /* imobilityApp.swift */,
 				1AC68A4E2AFC09D70057D341 /* Assets.xcassets */,
-				1ADE17632AFF0613003EE7D3 /* GoogleService-Info.plist */,
+				1A9D47912B050B12009EA109 /* GoogleService-Info.plist */,
 				1AC68A502AFC09D70057D341 /* Preview Content */,
 			);
 			path = imobility;
@@ -209,7 +213,7 @@
 				1AC68A8B2AFC13990057D341 /* ImageManager.swift */,
 				1ACDE5182AFC318B000B2CEA /* UserManager.swift */,
 				1ACDE5202AFC33E9000B2CEA /* OccurrenceManager.swift */,
-				1A9397BD2AFD765000D5B49D /* ChartsManager.swift */,
+				1A9397BD2AFD765000D5B49D /* ChartManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -239,6 +243,8 @@
 		1ACDE51B2AFC3303000B2CEA /* ReportsView */ = {
 			isa = PBXGroup;
 			children = (
+				1AC36EDF2B06AAE90002E5C7 /* ChartRegionDetailsRegionView.swift */,
+				1AC36EE12B06D5500002E5C7 /* ChartGeneralView.swift */,
 				1A9397BF2AFD768E00D5B49D /* ReportView.swift */,
 			);
 			path = ReportsView;
@@ -351,7 +357,7 @@
 			files = (
 				1AC68A522AFC09D70057D341 /* Preview Assets.xcassets in Resources */,
 				1AC68A4F2AFC09D70057D341 /* Assets.xcassets in Resources */,
-				1ADE17642AFF0613003EE7D3 /* GoogleService-Info.plist in Resources */,
+				1A9D47922B050B12009EA109 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +376,7 @@
 				1A9397C22AFD76CB00D5B49D /* LocationSelectionView.swift in Sources */,
 				1A9397AF2AFD5FE600D5B49D /* OccurrenceDetailView.swift in Sources */,
 				1A9397B52AFD62FD00D5B49D /* RegisterView.swift in Sources */,
-				1A9397BE2AFD765000D5B49D /* ChartsManager.swift in Sources */,
+				1A9397BE2AFD765000D5B49D /* ChartManager.swift in Sources */,
 				1AC68A8F2AFC15580057D341 /* PersistenceUserManager.swift in Sources */,
 				1ACDE5232AFC341A000B2CEA /* MapLocation.swift in Sources */,
 				1ACDE5192AFC318B000B2CEA /* UserManager.swift in Sources */,
@@ -384,9 +390,11 @@
 				1AC68A732AFC0D000057D341 /* Icons.swift in Sources */,
 				1AC68A802AFC106E0057D341 /* Occurrence.swift in Sources */,
 				1A9397AD2AFD5D7300D5B49D /* RankView.swift in Sources */,
+				1AC36EE22B06D5500002E5C7 /* ChartGeneralView.swift in Sources */,
 				1AC68A772AFC0E9F0057D341 /* Validations.swift in Sources */,
 				1A9397C62AFD773700D5B49D /* ImagemSelectionView.swift in Sources */,
 				1A9397CB2AFD77DE00D5B49D /* AccountUserView.swift in Sources */,
+				1AC36EE02B06AAE90002E5C7 /* ChartRegionDetailsRegionView.swift in Sources */,
 				1AC68A4B2AFC09D50057D341 /* imobilityApp.swift in Sources */,
 				1AC68A8C2AFC13990057D341 /* ImageManager.swift in Sources */,
 				1AC68A7C2AFC102E0057D341 /* User.swift in Sources */,

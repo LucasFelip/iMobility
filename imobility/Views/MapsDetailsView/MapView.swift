@@ -8,10 +8,14 @@ struct Mapa: View {
     
     @State private var isShowingModal = false
     @State private var selectedOccurrence: Occurrence?
+    @State private var mapRegion = MKCoordinateRegion(
+        center: .init(latitude: 0, longitude: 0),
+        span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    )
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $locationManager.region,
+            Map(coordinateRegion: $mapRegion,
                 showsUserLocation: true,
                 annotationItems: visibleOccurrences()) { occurrence in
                 MapAnnotation(coordinate: occurrence.coordinate) {
@@ -22,13 +26,21 @@ struct Mapa: View {
                         })
                 }
             }
+            .onReceive(locationManager.$region) { region in
+                DispatchQueue.main.async {
+                    self.mapRegion = region
+                }
+                locationManager.locationDescription()
+            }
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $isShowingModal) {
             OccurrenceDetailView(selectedOccurrence: $selectedOccurrence, isShowingModal: $isShowingModal)
         }
         .onAppear {
-            occurrenceManager.loadTotalOccurrence()
+            DispatchQueue.main.async {
+                occurrenceManager.loadTotalOccurrence()
+            }
         }
     }
     
@@ -45,17 +57,10 @@ struct Mapa: View {
 }
 
 struct MapView: View {
-    @EnvironmentObject private var occurrenceManager: OccurrenceManager
-    
     var body: some View {
         VStack {
             Mapa()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                occurrenceManager.loadTotalOccurrence()
-            }
-        }
     }
 }

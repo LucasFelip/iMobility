@@ -33,7 +33,7 @@ class UserManager: NSObject, ObservableObject {
         PersistenceUserManager.shared.updateUser(updatedUser: updateUser)
         
         PersistenceUserManager.shared.getUserByID(id: updateUser.id) { user in
-            if let updatedUser = user {
+            if user != nil{
                 self.removeUserFromMemory()
                 self.saveUserInMemory(updateUser)
                 self.currentUser = updateUser

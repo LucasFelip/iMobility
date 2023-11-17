@@ -2,10 +2,15 @@ import MapKit
 
 final class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
+    
+    @Published var country: String = ""
+    @Published var state: String = ""
+    @Published var city: String = ""
+    @Published var neighborhhod: String = ""
         
     @Published var region = MKCoordinateRegion(
         center: .init(latitude: 0, longitude: -0),
-        span: .init(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
         
     override init() {
@@ -25,6 +30,23 @@ final class LocationManager: NSObject, ObservableObject {
             locationManager.requestWhenInUseAuthorization()
         default:
             break
+        }
+    }
+    
+    func locationDescription() {
+        let geocoder = CLGeocoder()
+        let center = self.region.center
+        let location = CLLocation(latitude: center.latitude, longitude: center.longitude)
+        
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            if let error = error {
+                print("\n Geocoding error: \(error)")
+            } else if let placemark = placemarks?.first {
+                self.neighborhhod = placemark.subLocality ?? "Unknown neighborhhod"
+                self.city = placemark.locality ?? "Unknown city"
+                self.state = placemark.administrativeArea ?? "Unknown state"
+                self.country = placemark.country ?? "Unknown country"
+            }
         }
     }
 }

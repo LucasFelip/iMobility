@@ -63,10 +63,10 @@ struct OccurrenceView: View {
                 }
             })
             .sheet(isPresented: $isConfirmLocation) {
-                LocationSelectionView(selectLocation: $isLocationSelection, isConfirmLocation: $isConfirmLocation)
+                LocationSelectionView(selectLocation: $isLocationSelection, isConfirmLocation: $isConfirmLocation, insertLocal: $insertLocal)
             }
             .sheet(isPresented: $isConfirmCategory) {
-                CategorySelectionView(selectedCategory: $isCategorySelection, isConfirmSelection: $isConfirmCategory)
+                CategorySelectionView(selectedCategory: $isCategorySelection, isConfirmSelection: $isConfirmCategory, insertType: $insertType)
             }
             .actionSheet(isPresented: $isConfirmPhoto) {
                 ActionSheet(title: Text("Escolha a Fonte da Imagem"),

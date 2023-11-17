@@ -51,10 +51,20 @@ class OccurrenceManager: NSObject, ObservableObject {
         loadTotalOccurrencesDatabase()
     }
 
-    private func loadTotalOccurrencesDatabase() {
-        PersistenceOccurrenceManager.shared.loadOccurrences { [self] occurrence in
-            DispatchQueue.main.async { [self] in
-                self.occurrences = occurrence
+    func loadTotalOccurrencesDatabase() {
+        PersistenceOccurrenceManager.shared.loadOccurrences { [weak self] newOccurrences in
+            DispatchQueue.main.async {
+                self?.updateOccurrencesList(with: newOccurrences)
+            }
+        }
+    }
+
+    func updateOccurrencesList(with newOccurrences: [Occurrence]) {
+        for newOccurrence in newOccurrences {
+            if let index = occurrences.firstIndex(where: { $0.id == newOccurrence.id }) {
+                occurrences[index] = newOccurrence
+            } else {
+                occurrences.append(newOccurrence)
             }
         }
     }
@@ -62,10 +72,9 @@ class OccurrenceManager: NSObject, ObservableObject {
     private func loadTotalOccurrencesDatabasePaginated() {
         guard !isPaginating else { return }
         isPaginating = true
-
         PersistenceOccurrenceManager.shared.loadOccurrencesPaginated(startAfterDocument: lastDocumentSnapshot) { [weak self] (newOccurrences, lastDocument) in
             DispatchQueue.main.async {
-                self?.occurrences.append(contentsOf: newOccurrences)
+                self?.updateOccurrencesList(with: newOccurrences)
                 self?.lastDocumentSnapshot = lastDocument
                 self?.isPaginating = false
             }

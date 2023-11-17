@@ -49,3 +49,31 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
         picker.dismiss(animated: true)
     }
 }
+
+extension UIImage {
+    func resizedToUnder1MB() -> UIImage? {
+        guard let imageData = self.jpegData(compressionQuality: 1.0) else { return nil }
+        let oneMegabyte = 1048576.0
+
+        var resizingImage = self
+        var imageSizeBytes = Double(imageData.count)
+
+        while imageSizeBytes > oneMegabyte {
+            guard let resizedImage = resizingImage.resized(withPercentage: 0.5),
+                  let imageData = resizedImage.jpegData(compressionQuality: 1.0) else { return nil }
+            
+            resizingImage = resizedImage
+            imageSizeBytes = Double(imageData.count)
+        }
+        
+        return resizingImage
+    }
+    
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}

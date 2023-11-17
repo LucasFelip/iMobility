@@ -1,7 +1,7 @@
 import Foundation
 
 enum TypeOccurrence: String, Codable, CaseIterable {
-    case buracoVia = "Buraco na Via"
+    case buracoVia = "Buraco na Rua"
     case faltaSinalizacao = "Falta de Sinalização"
     case buracoCalcada = "Buraco na Calçada"
     case obstrucaoVia = "Obstrução na Via"

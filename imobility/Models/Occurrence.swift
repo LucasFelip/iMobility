@@ -44,4 +44,3 @@ class Occurrence: Identifiable, Codable {
         negativeRate += 1
     }
 }
-

@@ -36,34 +36,33 @@ struct ButtonRetangularSimple: View {
     let action: () -> Void
     
     var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(.clear)
-                .frame(width: 220, height: 60)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(
-                            stops: [
-                                Gradient.Stop(color: Color(red: 0.64, green: 0.28, blue: 0.88), location: 0.0),
-                                Gradient.Stop(color: Color(red: 0.36, green: 0.47, blue: 0.96), location: 1.0)
-                            ]
-                        ),
-                        startPoint: .leading,
-                        endPoint: .trailing
+        Button(action: action) {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 220, height: 60)
+                    .background(
+                        LinearGradient(
+                            gradient: Gradient(
+                                stops: [
+                                    Gradient.Stop(color: Color(red: 0.64, green: 0.28, blue: 0.88), location: 0.0),
+                                    Gradient.Stop(color: Color(red: 0.36, green: 0.47, blue: 0.96), location: 1.0)
+                                ]
+                            ),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
                     )
-                )
-                .cornerRadius(15)
+                    .cornerRadius(15)
 
-            HStack {
-                Text(buttonText)
-                    .font(Font.custom("Montserrat-Regular", size: 22))
-                    .foregroundColor(.black)
+                HStack {
+                    Text(buttonText)
+                        .font(Font.custom("Montserrat-Regular", size: 22))
+                        .foregroundColor(.black)
+                }
+                .padding(.horizontal, 40)
             }
-            .padding(.horizontal, 40)
-        }
-        .padding(.top, 10)
-        .onTapGesture {
-            action()
+            .padding(.top, 10)
         }
     }
 }
