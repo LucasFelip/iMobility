@@ -8,26 +8,25 @@ struct ButtonColorido: View {
         Button(action: action) {
             ZStack {
                 Rectangle()
-                  .foregroundColor(.clear)
-                  .frame(width: 97, height: 43)
-                  .background(
-                    LinearGradient(
-                      stops: [
-                        Gradient.Stop(color: Color(red: 0.25, green: 0.55, blue: 1), location: 0.00),
-                        Gradient.Stop(color: Color(red: 0.7, green: 0.23, blue: 0.86), location: 1.00),
-                      ],
-                      startPoint: UnitPoint(x: 0.96, y: 1),
-                      endPoint: UnitPoint(x: -0.05, y: -0.21)
+                    .foregroundColor(.clear)
+                    .frame(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.height * 0.05)
+                    .background(
+                        LinearGradient(
+                            stops: [
+                                Gradient.Stop(color: Color(red: 0.25, green: 0.55, blue: 1), location: 0.00),
+                                Gradient.Stop(color: Color(red: 0.7, green: 0.23, blue: 0.86), location: 1.00),
+                            ],
+                            startPoint: UnitPoint(x: 0.96, y: 1),
+                            endPoint: UnitPoint(x: -0.05, y: -0.21)
+                        )
                     )
-                  )
-                  .cornerRadius(25)
+                    .cornerRadius(25)
                 Text(title)
-                  .font(Font.custom("Montserrat", size: 16))
-                  .foregroundColor(.white)
-                  .frame(alignment: .center)
+                    .font(.system(size: UIScreen.main.bounds.width * 0.04))
+                    .foregroundColor(.white)
             }
-            .padding(.top, 50)
         }
+        .padding(.top, 50)
     }
 }
 
@@ -67,7 +66,7 @@ struct ButtonRetangularSimple: View {
     }
 }
 
-struct ButtonRetangular: View {
+struct ButtonRectangular: View {
     let buttonText: String
     let action: () -> Void
     @Binding var isCheckmarkVisible: Bool
@@ -76,16 +75,16 @@ struct ButtonRetangular: View {
         ZStack {
             Rectangle()
                 .foregroundColor(.clear)
-                .frame(width: 330, height: 70)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, idealHeight: 70, maxHeight: 80, alignment: .center)
                 .background(Color(red: 0.87, green: 0.87, blue: 0.87))
                 .cornerRadius(15)
 
             HStack {
                 Text(buttonText)
-                    .font(Font.custom("Montserrat-Regular", size: 36))
+                    .font(.system(size: UIScreen.main.bounds.width * 0.08))
                     .foregroundColor(.black)
-                    .padding(.leading, 5)
-                    .padding(.trailing, 30)
+                    .padding(.leading, UIScreen.main.bounds.width * 0.02)
+                    .padding(.trailing, UIScreen.main.bounds.width * 0.05)
 
                 Spacer()
 
@@ -94,18 +93,17 @@ struct ButtonRetangular: View {
                         .fill(isCheckmarkVisible
                             ? LinearGradient(gradient: Gradient(colors: [Color(red: 0.64, green: 0.28, blue: 0.88), Color(red: 0.36, green: 0.47, blue: 0.96)]), startPoint: .top, endPoint: .bottom)
                             : LinearGradient(gradient: Gradient(colors: [Color.gray]), startPoint: .top, endPoint: .bottom))
-                        .frame(width: 40, height: 40)
+                        .frame(width: min(UIScreen.main.bounds.width * 0.1, 60), height: min(UIScreen.main.bounds.width * 0.1, 60))
                     if isCheckmarkVisible {
                         Image(systemName: "checkmark")
-                            .font(.system(size: 20))
+                            .font(.system(size: UIScreen.main.bounds.width * 0.05))
                             .foregroundColor(.black)
                     }
                 }
-                .padding(.trailing, 5)
+                .padding(.trailing, UIScreen.main.bounds.width * 0.02)
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
         }
-        .padding(.top, 10)
         .onTapGesture {
             action()
             withAnimation {
@@ -123,7 +121,7 @@ struct RegisterAppButton: View {
             ZStack(alignment: .center) {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 325, height: 53)
+                    .frame(width: UIScreen.main.bounds.width * 0.85, height: UIScreen.main.bounds.height * 0.065)
                     .background(
                         LinearGradient(
                             stops: [
@@ -136,10 +134,10 @@ struct RegisterAppButton: View {
                     )
                     .cornerRadius(25)
                 Text("Se cadastre")
-                    .font(Font.custom("Montserrat", size: 18))
+                    .font(.system(size: UIScreen.main.bounds.width * 0.045))
                     .foregroundColor(.white)
             }
-            .padding(.bottom, 10)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.01)
         }
     }
 }
@@ -152,7 +150,7 @@ struct TypeLoginGoogleButton: View {
             ZStack(alignment: .center) {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 325, height: 53)
+                    .frame(width: UIScreen.main.bounds.width * 0.85, height: UIScreen.main.bounds.height * 0.065)
                     .cornerRadius(25)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
@@ -160,14 +158,14 @@ struct TypeLoginGoogleButton: View {
                     )
                 HStack {
                     Text("Continue com Google")
-                        .font(Font.custom("Montserrat", size: 18))
+                        .font(.system(size: UIScreen.main.bounds.width * 0.045))
                         .foregroundColor(.primary)
                     Image("google_icon")
                         .resizable()
-                        .frame(width: 30, height: 30)
+                        .frame(width: UIScreen.main.bounds.width * 0.06, height: UIScreen.main.bounds.width * 0.06)
                 }
             }
-            .padding(.bottom, 10)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.01)
         }
     }
 }
@@ -180,7 +178,7 @@ struct TypeLoginAppleButton: View {
             ZStack(alignment: .center) {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 325, height: 53)
+                    .frame(width: UIScreen.main.bounds.width * 0.85, height: UIScreen.main.bounds.height * 0.065)
                     .cornerRadius(25)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
@@ -188,15 +186,14 @@ struct TypeLoginAppleButton: View {
                     )
                 HStack {
                     Text("Continue com Apple")
-                        .font(Font.custom("Montserrat", size: 18))
+                        .font(.system(size: UIScreen.main.bounds.width * 0.045))
                         .foregroundColor(.primary)
-                    Image(systemName: "apple.logo")
+                    Image("apple_icon")
                         .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(.black, .background)
+                        .frame(width: UIScreen.main.bounds.width * 0.06, height: UIScreen.main.bounds.width * 0.07)
                 }
             }
-            .padding(.bottom, 10)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.01)
         }
     }
 }
@@ -206,13 +203,9 @@ struct TypeLoginAppButton: View {
     
     var body: some View {
         Button(action: action) {
-            HStack {
-                Text("Faça o login")
-                    .font(Font.custom("Montserrat", size: 18))
-                    .frame(alignment: .center)
-                    .foregroundColor(.primary)
-            }
-            .padding(.bottom, 10)
+            Text("Faça o login")
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
+                .foregroundColor(.primary)
         }
     }
 }
@@ -223,8 +216,7 @@ struct TypeLoginBackButton: View {
     var body: some View {
         Button(action: action) {
             Text("Voltar")
-                .font(Font.custom("Montserrat", size: 18))
-                .frame(alignment: .center)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
                 .foregroundColor(.primary)
         }
     }

@@ -20,6 +20,8 @@ struct OccurrenceByStateChart: View {
             .aspectRatio(1, contentMode: .fit)
             .foregroundColor(.purple)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -42,6 +44,8 @@ struct OccurrenceByCityChart: View {
             .aspectRatio(1, contentMode: .fit)
             .foregroundColor(.purple)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -64,5 +68,7 @@ struct OccurrenceByNeighboodChart: View {
             .aspectRatio(1, contentMode: .fit)
             .foregroundColor(.purple)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }

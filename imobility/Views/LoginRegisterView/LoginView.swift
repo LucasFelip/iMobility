@@ -7,18 +7,27 @@ struct Types: View {
     @State private var isShowingScreenLogin = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: UIScreen.main.bounds.height * 0.02) {
             RegisterAppButton(action: {
                 isShowingScreenRegister = true
             })
+            .frame(width: UIScreen.main.bounds.width * 0.8)
+
             TypeLoginGoogleButton(action: {})
+            .frame(width: UIScreen.main.bounds.width * 0.8)
+
             TypeLoginAppleButton(action: {})
+            .frame(width: UIScreen.main.bounds.width * 0.8)
+
             TypeLoginAppButton(action: {
                 isShowingScreenLogin = true
             })
+            .frame(width: UIScreen.main.bounds.width * 0.8)
+
             TypeLoginBackButton(action: {
                 isShowingMap = true
             })
+            .frame(width: UIScreen.main.bounds.width * 0.8)
         }
         .opacity(isShowingElements ? 1.0 : 0.0)
         .onAppear {
@@ -45,13 +54,13 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             VStack{
-                Vector(imageName: "Vector 1", startX: UIScreen.main.bounds.width, startY: -UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 1", startXProportion: UIScreen.main.bounds.width, startYProportion: -UIScreen.main.bounds.height)
                 TextImobility()
-                    .padding(.top, 150)
+                    .padding(.top, UIScreen.main.bounds.height * 0.15)
                 Types()
-                    .frame(alignment: .center)
-                    .padding(.vertical, 25)
-                Vector(imageName: "Vector 2", startX: -UIScreen.main.bounds.width, startY: UIScreen.main.bounds.height)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .padding(.vertical, UIScreen.main.bounds.height * 0.025)
+                Vector(imageName: "Vector 2", startXProportion: -UIScreen.main.bounds.width, startYProportion: UIScreen.main.bounds.height)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .edgesIgnoringSafeArea(.all)

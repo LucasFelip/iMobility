@@ -5,7 +5,7 @@ struct TextImobility: View {
 
     var body: some View {
         Text("iMobility")
-            .font(Font.custom("Montserrat-Regular", size: 64))
+            .font(Font.custom("Montserrat-Regular", size: UIScreen.main.bounds.width * 0.15)) // Tamanho da fonte responsivo
             .opacity(isShowingText ? 1.0 : 0.0)
             .onAppear {
                 withAnimation(.easeIn(duration: 1.0)) {
@@ -21,10 +21,10 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Vector(imageName: "Vector 1", startX: UIScreen.main.bounds.width, startY: -UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 1", startXProportion: UIScreen.main.bounds.width * 0.8, startYProportion: -UIScreen.main.bounds.height * 0.8)
                 TextImobility()
-                    .padding(.vertical, 200.0)
-                Vector(imageName: "Vector 2", startX: -UIScreen.main.bounds.width, startY: UIScreen.main.bounds.height)
+                    .padding(.vertical, UIScreen.main.bounds.height * 0.1)
+                Vector(imageName: "Vector 2", startXProportion: -UIScreen.main.bounds.width * 0.8, startYProportion: UIScreen.main.bounds.height * 0.8)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)

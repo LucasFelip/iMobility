@@ -10,7 +10,6 @@ struct TabBarController: View {
     @State private var showUserAccont = false
     
     var body: some View {
-        
         TabView(selection: $selectedTab) {
             MapView()
                 .tabItem {

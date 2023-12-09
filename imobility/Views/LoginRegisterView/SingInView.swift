@@ -10,15 +10,15 @@ struct PasswordLogin: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Senha")
-              .font(
-                Font.custom("Montserrat", size: 20)
-                  .weight(.medium)
-              )
+                .font(.system(size: UIScreen.main.bounds.width * 0.05))
+                .fontWeight(.medium)
+            
             SecureField(" Digite sua senha", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 329)
-                .font(Font.custom("Montserrat", size: 18))
+                .frame(width: UIScreen.main.bounds.width * 0.8)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
         }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
     }
 }
 
@@ -32,16 +32,16 @@ struct EmailLogin: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Email")
-              .font(
-                Font.custom("Montserrat", size: 20)
-                  .weight(.medium)
-              )
+                .font(.system(size: UIScreen.main.bounds.width * 0.05))
+                .fontWeight(.medium)
+            
             TextField(" Digite seu e-mail", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.emailAddress)
-                .frame(width: 329)
-                .font(Font.custom("Montserrat", size: 18))
+                .frame(width: UIScreen.main.bounds.width * 0.8)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
         }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
     }
 }
 
@@ -52,11 +52,12 @@ struct StepsLogin: View {
     var body: some View {
         VStack(alignment: .trailing) {
             EmailLogin(email: $email)
-                .padding(.bottom, 15)
+                .padding(.bottom, UIScreen.main.bounds.height * 0.02)
+
             PasswordLogin(password: $password)
-                .padding(.bottom, 15)
+                .padding(.bottom, UIScreen.main.bounds.height * 0.02)
         }
-        .padding(.vertical, 20)
+        .padding(.vertical, UIScreen.main.bounds.height * 0.025)
     }
 }
 
@@ -102,7 +103,7 @@ struct SingInView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Vector(imageName: "Vector 1", startX: UIScreen.main.bounds.width, startY: -UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 1", startXProportion: UIScreen.main.bounds.width, startYProportion: -UIScreen.main.bounds.height)
                 TextImobility()
                 StepsLogin(email: $email, password: $password)
                 ButtonColorido(title: "Logar") {
@@ -126,7 +127,7 @@ struct SingInView: View {
                 TypeLoginBackButton(action: {
                     isCanceledLogin  = true
                 })
-                Vector(imageName: "Vector 2", startX: -UIScreen.main.bounds.width, startY: UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 2", startXProportion: -UIScreen.main.bounds.width, startYProportion: UIScreen.main.bounds.height)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .edgesIgnoringSafeArea(.all)

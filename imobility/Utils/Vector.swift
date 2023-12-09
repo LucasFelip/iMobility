@@ -3,19 +3,19 @@ import SwiftUI
 struct Vector: View {
     @State private var isSliding = false
     let imageName: String
-    let startX: CGFloat
-    let startY: CGFloat
+    let startXProportion: CGFloat
+    let startYProportion: CGFloat
 
-    init(imageName: String, startX: CGFloat, startY: CGFloat) {
+    init(imageName: String, startXProportion: CGFloat, startYProportion: CGFloat) {
         self.imageName = imageName
-        self.startX = startX
-        self.startY = startY
+        self.startXProportion = startXProportion
+        self.startYProportion = startYProportion
     }
 
     var body: some View {
         Image(imageName)
             .resizable()
-            .offset(x: isSliding ? 0 : startX, y: isSliding ? 0 : startY)
+            .offset(x: isSliding ? 0 : startXProportion, y: isSliding ? 0 : startYProportion)
             .onAppear {
                 withAnimation(.easeInOut(duration: 1.2)) {
                     isSliding = true

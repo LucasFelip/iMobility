@@ -4,34 +4,32 @@ struct Home: View {
     var body: some View {
         VStack {
             Image(systemName: "house")
-                .font(.title)
+                .font(.system(size: UIScreen.main.bounds.width * 0.08))
                 .foregroundStyle(.black)
             Text("Início")
               .font(
-                Font.custom("Montserrat", size: 16)
+                Font.custom("Montserrat", size: UIScreen.main.bounds.width * 0.04)
                   .weight(.medium)
               )
               .multilineTextAlignment(.center)
               .foregroundColor(.black)
-              .frame(height: 17, alignment: .center)
         }
     }
 }
 
 struct Rank: View {
     var body: some View {
-        VStack{
+        VStack {
             Image(systemName: "chart.bar")
-                .font(.title)
+                .font(.system(size: UIScreen.main.bounds.width * 0.08))
                 .foregroundStyle(.black)
             Text("Rank")
-              .font(
-                Font.custom("Montserrat", size: 16)
-                  .weight(.medium)
-              )
-              .multilineTextAlignment(.center)
-              .foregroundColor(.black)
-              .frame(alignment: .center)
+                .font(
+                    Font.custom("Montserrat", size: UIScreen.main.bounds.width * 0.04)
+                        .weight(.medium)
+                )
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
     }
 }
@@ -40,16 +38,15 @@ struct Account: View {
     var body: some View {
         VStack{
             Image(systemName: "person")
-                .font(.title)
+                .font(.system(size: UIScreen.main.bounds.width * 0.08))
                 .foregroundStyle(.black)
             Text("Conta")
-              .font(
-                Font.custom("Montserrat", size: 16)
-                  .weight(.medium)
-              )
-              .multilineTextAlignment(.center)
-              .foregroundColor(.black)
-              .frame(height: 17, alignment: .center)
+                .font(
+                    Font.custom("Montserrat", size: UIScreen.main.bounds.width * 0.04)
+                        .weight(.medium)
+                )
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
     }
 }
@@ -58,16 +55,15 @@ struct Report: View {
     var body: some View {
         VStack{
             Image(systemName: "doc")
-                .font(.title)
+                .font(.system(size: UIScreen.main.bounds.width * 0.08))
                 .foregroundStyle(.black)
             Text("Reportar")
-              .font(
-                Font.custom("Montserrat", size: 16)
-                  .weight(.medium)
-              )
-              .multilineTextAlignment(.center)
-              .foregroundColor(.black)
-              .frame(height: 17, alignment: .center)
+                .font(
+                    Font.custom("Montserrat", size: UIScreen.main.bounds.width * 0.04)
+                        .weight(.medium)
+                )
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
     }
 }
@@ -76,34 +72,15 @@ struct UserAccount: View {
     var body: some View {
         VStack{
             Image(systemName: "person")
-                .font(.title)
+                .font(.system(size: UIScreen.main.bounds.width * 0.08))
                 .foregroundStyle(.black)
             Text("Perfil")
-              .font(
-                Font.custom("Montserrat", size: 16)
-                  .weight(.medium)
-              )
-              .multilineTextAlignment(.center)
-              .foregroundColor(.black)
-              .frame(height: 17, alignment: .center)
-        }
-    }
-}
-
-struct DeleteDatabase: View {
-    var body: some View {
-        VStack{
-            Image(systemName: "x.circle.fill")
-                .font(.title)
-                .foregroundStyle(.black)
-            Text("Delete")
-              .font(
-                Font.custom("Montserrat", size: 16)
-                  .weight(.medium)
-              )
-              .multilineTextAlignment(.center)
-              .foregroundColor(.black)
-              .frame(height: 17, alignment: .center)
+                .font(
+                    Font.custom("Montserrat", size: UIScreen.main.bounds.width * 0.04)
+                        .weight(.medium)
+                )
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
     }
 }

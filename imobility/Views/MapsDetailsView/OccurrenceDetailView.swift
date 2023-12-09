@@ -11,11 +11,11 @@ struct OccurrenceDetailView: View {
     var body: some View {
         if let occurrence = selectedOccurrence {
             VStack {
-                Vector(imageName: "Vector 1", startX: UIScreen.main.bounds.width, startY: -UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 1", startXProportion: UIScreen.main.bounds.width, startYProportion: -UIScreen.main.bounds.height)
                 OccurrenceDetailsView(occurrence: occurrence)
                 InteractionButtons(occurrence: occurrence, hasInteracted: $hasInteracted)
                 ButtonRetangularSimple(buttonText: "Voltar", action: { isShowingModal = false })
-                Vector(imageName: "Vector 2", startX: -UIScreen.main.bounds.width, startY: UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 2", startXProportion: -UIScreen.main.bounds.width, startYProportion: UIScreen.main.bounds.height)
             }
 //            .alert(isPresented: $hasInteracted) {
 //                Alert(

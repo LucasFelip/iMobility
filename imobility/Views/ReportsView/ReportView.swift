@@ -18,7 +18,7 @@ struct ReportView: View {
         NavigationStack {
             GeometryReader { geometry in
                 VStack {
-                    Vector(imageName: "Vector 1", startX: geometry.size.width, startY: -geometry.size.height)
+                    Vector(imageName: "Vector 1", startXProportion: geometry.size.width, startYProportion: -geometry.size.height)
                     
                     if isShowingReportDetailRegion {
                         ScrollView {
@@ -40,7 +40,7 @@ struct ReportView: View {
                                 }
                             }
                         }
-                        .frame(height: geometry.size.width * 1.6)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.8)
                     } else {
                         ScrollView {
                             VStack {
@@ -64,9 +64,9 @@ struct ReportView: View {
                                 })
                             }
                         }
-                        .frame(height: geometry.size.width * 1.6)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.8)
                     }
-                    Vector(imageName: "Vector 2", startX: -geometry.size.width, startY: geometry.size.height)
+                    Vector(imageName: "Vector 2", startXProportion: -geometry.size.width, startYProportion: geometry.size.height)
                 }
                 .onAppear {
                     defineLocationUser()
@@ -113,14 +113,12 @@ struct SectionView<Content: View>: View {
     var body: some View {
         VStack(alignment: .center) {
             Text(title)
-                .font(.headline)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
                 .foregroundColor(.primary)
                 .padding(.bottom, 10)
             content()
         }
-        .padding(.all, 10)
-        .background(Color.gray.opacity(0.1))
+        .padding(.all, UIScreen.main.bounds.width * 0.025)
         .cornerRadius(10)
     }
 }
-

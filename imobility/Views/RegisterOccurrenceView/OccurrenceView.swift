@@ -4,9 +4,7 @@ struct OccurrenceView: View {
     @EnvironmentObject private var occurrenceManager: OccurrenceManager
     @EnvironmentObject private var userManager: UserManager
     
-    @State private var isShowingElements = true
     @State private var isShowingButtonBack = true
-    @State private var isShowingButton = true
     @State private var isShowingInitView = false
     
     @State private var insertLocal = false
@@ -29,28 +27,35 @@ struct OccurrenceView: View {
             VStack{
                 Image("report init")
                     .resizable()
-                    .frame(width: 220, height: 202)
-                    .opacity(isShowingElements ? 1.0 : 0.0)
+                    .scaledToFit()
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+
+                ButtonRectangular(buttonText: "Localização", action: {
+                    isConfirmLocation = true
+                }, isCheckmarkVisible: $insertLocal)
+                .padding(.bottom, 5)
+                .padding(.horizontal, 20)
+
+                ButtonRectangular(buttonText: "Categoria", action: {
+                    isConfirmCategory = true
+                }, isCheckmarkVisible: $insertType)
+                .padding(.bottom, 5)
+                .padding(.horizontal, 20)
+
+                ButtonRectangular(buttonText: "Foto", action: {
+                    isConfirmPhoto = true
+                }, isCheckmarkVisible: $insertPicture)
+                .padding(.bottom, 10)
+                .padding(.horizontal, 20)
                     
-                if isShowingButton {
-                    ButtonRetangular(buttonText: "Localização", action: {
-                        isConfirmLocation = true
-                    }, isCheckmarkVisible: $insertLocal)
-                    ButtonRetangular(buttonText: "Categoria", action: {
-                        isConfirmCategory = true
-                    }, isCheckmarkVisible: $insertType)
-                    ButtonRetangular(buttonText: "Foto", action: {
-                        isConfirmPhoto = true
-                    }, isCheckmarkVisible: $insertPicture)
-                }
                 if insertLocal && insertType && insertPicture {
                     ButtonColorido(title: "Enviar", action: {
                         occurrenceManager.registerOccurrenceUser(currentUser: UserManager().currentUser!, mapLocation: isLocationSelection, type: isCategorySelection, image: isImageSelection!)
-                        isShowingInitView = true
+                            isShowingInitView = true
                     })
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity)
             .navigationBarItems(leading: Group {
                 if isShowingButtonBack {
                     Button(action: {

@@ -20,9 +20,10 @@ struct OccurrenceByTypeChart: View {
             }
             .aspectRatio(1, contentMode: .fit)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
-
 
 struct OccurrenceByDateChart: View {
     @ObservedObject var chartManager: ChartManager
@@ -57,6 +58,8 @@ struct OccurrenceByDateChart: View {
             .foregroundColor(.purple)
             .chartLegend(position: .topLeading)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -96,6 +99,8 @@ struct OccurrenceRatesChart: View {
             .aspectRatio(1, contentMode: .fit)
             .chartLegend(position: .topLeading)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -151,5 +156,7 @@ struct OccurrenceByRegionChart: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal, 25)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }

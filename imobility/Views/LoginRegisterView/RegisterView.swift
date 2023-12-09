@@ -10,18 +10,19 @@ struct NameRegister: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Qual o seu nome?")
-              .font(
-                Font.custom("Montserrat", size: 20)
-                  .weight(.medium)
-              )
+                .font(.system(size: UIScreen.main.bounds.width * 0.05))
+                .fontWeight(.medium)
+            
             TextField(" Digite seu nome", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 329)
-                .font(Font.custom("Montserrat", size: 18))
+                .frame(width: UIScreen.main.bounds.width * 0.8)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
                 .padding(.vertical)
-            Text("O nome que aparecera em seu perfil")
-              .font(Font.custom("Montserrat", size: 12))
+
+            Text("O nome que aparecerá em seu perfil")
+                .font(.system(size: UIScreen.main.bounds.width * 0.03))
         }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
     }
 }
 
@@ -35,18 +36,19 @@ struct PasswordRegister: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Crie uma senha")
-              .font(
-                Font.custom("Montserrat", size: 20)
-                  .weight(.medium)
-              )
+                .font(.system(size: UIScreen.main.bounds.width * 0.05))
+                .fontWeight(.medium)
+            
             SecureField(" Digite sua senha", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 329)
-                .font(Font.custom("Montserrat", size: 18))
+                .frame(width: UIScreen.main.bounds.width * 0.8)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
                 .padding(.vertical)
+
             Text("Sua senha deve seguir os critérios de segurança")
-              .font(Font.custom("Montserrat", size: 12))
+                .font(.system(size: UIScreen.main.bounds.width * 0.03))
         }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
     }
 }
 
@@ -60,21 +62,23 @@ struct EmailRegister: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Qual é o seu E-mail?")
-              .font(
-                Font.custom("Montserrat", size: 20)
-                  .weight(.medium)
-              )
+                .font(.system(size: UIScreen.main.bounds.width * 0.05))
+                .fontWeight(.medium)
+            
             TextField(" Digite seu e-mail", text: $email)
                 .keyboardType(.emailAddress)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 329)
-                .font(Font.custom("Montserrat", size: 18))
+                .frame(width: UIScreen.main.bounds.width * 0.8)
+                .font(.system(size: UIScreen.main.bounds.width * 0.045))
                 .padding(.vertical)
-            Text("É necessario confirmar o e-mail depois")
-              .font(Font.custom("Montserrat", size: 12))
+
+            Text("É necessário confirmar o e-mail depois")
+                .font(.system(size: UIScreen.main.bounds.width * 0.03))
         }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
     }
 }
+
 
 struct StepsRegister: View {
     @EnvironmentObject private var userManager: UserManager
@@ -192,9 +196,9 @@ struct RegisterView: View {
     var body: some View {
         NavigationStack {
             VStack{
-                Vector(imageName: "Vector 1", startX: UIScreen.main.bounds.width, startY: -UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 1", startXProportion: UIScreen.main.bounds.width, startYProportion: -UIScreen.main.bounds.height)
                 StepsRegister().padding(.vertical, 150)
-                Vector(imageName: "Vector 2", startX: -UIScreen.main.bounds.width, startY: UIScreen.main.bounds.height)
+                Vector(imageName: "Vector 2", startXProportion: -UIScreen.main.bounds.width, startYProportion: UIScreen.main.bounds.height)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .edgesIgnoringSafeArea(.all)
